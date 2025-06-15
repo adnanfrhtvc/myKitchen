@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myKitchen - Kitchen Productivity App</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1>myKitchen</h1>
+                </div>
+                <button class="nav-toggle" id="nav-toggle">
+                    <span class="hamburger"></span>
+                </button>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#" class="nav-link" data-page="dashboard">Dashboard</a>
+                    <a href="#" class="nav-link" data-page="tasks">Tasks</a>
+                    <a href="#" class="nav-link" data-page="recipes">Recipes</a>
+                    <a href="#" class="nav-link" data-page="grocery">Grocery List</a>
+                    <a href="#" class="nav-link" data-page="account">My Account</a>
+                    <a href="#" class="nav-link" id="logout-btn">Logout</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Login Page -->
+            <div id="login-page" class="page active">
+                <div class="auth-container">
+                    <div class="auth-card">
+                        <h2>Welcome to myKitchen</h2>
+                        <form id="login-form">
+                            <div class="form-group">
+                                <label for="login-email">Email</label>
+                                <input type="email" id="login-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" id="login-password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                        <p class="auth-switch">
+                            Don't have an account? 
+                            <a href="#" id="show-register">Register here</a> | 
+                            <a href="#" id="show-reset">Forgot Password?</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register Page -->
+            <div id="register-page" class="page">
+                <div class="auth-container">
+                    <div class="auth-card">
+                        <h2>Create Account</h2>
+                        <form id="register-form">
+                            <div class="form-group">
+                                <label for="register-username">Username</label>
+                                <input type="text" id="register-username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-email">Email</label>
+                                <input type="email" id="register-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-first-name">First Name</label>
+                                <input type="text" id="register-first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-last-name">Last Name</label>
+                                <input type="text" id="register-last-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-password">Password</label>
+                                <input type="password" id="register-password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                        <p class="auth-switch">
+                            Already have an account? 
+                            <a href="#" id="show-login">Login here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password Reset Page -->
+            <div id="reset-page" class="page">
+                <div class="auth-container">
+                    <div class="auth-card">
+                        <h2>Reset Password</h2>
+                        <form id="reset-form">
+                            <div class="form-group">
+                                <label for="reset-email">Email</label>
+                                <input type="email" id="reset-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reset-new-password">New Password</label>
+                                <input type="password" id="reset-new-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reset-confirm-password">Confirm New Password</label>
+                                <input type="password" id="reset-confirm-password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Reset Password</button>
+                        </form>
+                        <p class="auth-switch">
+                            Remember your password? 
+                            <a href="#" id="back-to-login">Back to Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page">
+                <div class="container">
+                    <h2>Dashboard</h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-left">
+                            <div class="dashboard-card">
+                                <h3>Grocery List</h3>
+                                <div class="dashboard-grocery" id="dashboard-grocery">
+                                    <!-- Grocery items will be loaded here -->
+                                </div>
+                                <a href="#" class="btn btn-secondary" data-page="grocery">View Full List</a>
+                            </div>
+                        </div>
+                        <div class="dashboard-right">
+                            <div class="dashboard-card">
+                                <h3>Recent Tasks</h3>
+                                <div id="recent-tasks"></div>
+                                <a href="#" class="btn btn-secondary" data-page="tasks">View All Tasks</a>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3>Recent Recipes</h3>
+                                <div id="recent-recipes"></div>
+                                <a href="#" class="btn btn-secondary" data-page="recipes">View All Recipes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasks Page -->
+            <div id="tasks-page" class="page">
+                <div class="container">
+                    <div class="page-header">
+                        <h2>Tasks</h2>
+                        <button class="btn btn-primary" id="add-task-btn">Add Task</button>
+                    </div>
+                    <div class="tasks-container" id="tasks-container">
+                        <!-- Tasks will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipes Page -->
+            <div id="recipes-page" class="page">
+                <div class="container">
+                    <div class="page-header">
+                        <h2>Recipes</h2>
+                        <button class="btn btn-primary" id="add-recipe-btn">Add Recipe</button>
+                    </div>
+                    <div class="recipes-container" id="recipes-container">
+                        <!-- Recipes will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grocery List Page -->
+            <div id="grocery-page" class="page">
+                <div class="container">
+                    <div class="page-header">
+                        <h2>Grocery List</h2>
+                        <div class="grocery-actions">
+                            <button class="btn btn-secondary" id="clear-completed-btn">Clear Completed</button>
+                            <button class="btn btn-primary" id="add-grocery-btn">Add Item</button>
+                        </div>
+                    </div>
+                    <div class="grocery-container">
+                        <div class="grocery-input-section">
+                            <form id="quick-add-form" class="quick-add-form">
+                                <input type="text" id="quick-item-name" placeholder="Item name" required>
+                                <input type="text" id="quick-quantity" placeholder="Quantity (optional)">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
+                        </div>
+                        <div class="grocery-list" id="grocery-list">
+                            <!-- Grocery items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Page -->
+            <div id="account-page" class="page">
+                <div class="container">
+                    <h2>My Account</h2>
+                    <div class="account-container">
+                        <div class="account-card">
+                            <h3>Profile Information</h3>
+                            <form id="profile-form">
+                                <div class="form-group">
+                                    <label for="profile-username">Username</label>
+                                    <input type="text" id="profile-username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-email">Email</label>
+                                    <input type="email" id="profile-email" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-first-name">First Name</label>
+                                    <input type="text" id="profile-first-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-last-name">Last Name</label>
+                                    <input type="text" id="profile-last-name" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </form>
+                        </div>
+                        <div class="account-card danger-zone">
+                            <h3>Danger Zone</h3>
+                            <p>Once you delete your account, there is no going back. Please be certain.</p>
+                            <button class="btn btn-danger" id="delete-account-btn">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Task Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="task-modal-title">Add Task</h3>
+                <span class="close" id="close-task-modal">&times;</span>
+            </div>
+            <form id="task-form">
+                <div class="form-group">
+                    <label for="task-title">Title</label>
+                    <input type="text" id="task-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Description</label>
+                    <textarea id="task-description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-priority">Priority</label>
+                    <select id="task-priority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="task-status">Status</label>
+                    <select id="task-status">
+                        <option value="pending" selected>Pending</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="task-due-date">Due Date</label>
+                    <input type="datetime-local" id="task-due-date">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-task">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Recipe Modal -->
+    <div id="recipe-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="recipe-modal-title">Add Recipe</h3>
+                <span class="close" id="close-recipe-modal">&times;</span>
+            </div>
+            <form id="recipe-form">
+                <div class="form-group">
+                    <label for="recipe-title">Title</label>
+                    <input type="text" id="recipe-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-description">Description</label>
+                    <textarea id="recipe-description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-ingredients">Ingredients</label>
+                    <textarea id="recipe-ingredients" required placeholder="List ingredients, one per line"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-instructions">Instructions</label>
+                    <textarea id="recipe-instructions" required placeholder="Step-by-step instructions"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="recipe-prep-time">Prep Time (minutes)</label>
+                        <input type="number" id="recipe-prep-time" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-cook-time">Cook Time (minutes)</label>
+                        <input type="number" id="recipe-cook-time" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="recipe-servings">Servings</label>
+                        <input type="number" id="recipe-servings" min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-difficulty">Difficulty</label>
+                        <select id="recipe-difficulty">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-recipe">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Recipe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Grocery Item Modal -->
+    <div id="grocery-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="grocery-modal-title">Add Grocery Item</h3>
+                <span class="close" id="close-grocery-modal">&times;</span>
+            </div>
+            <form id="grocery-form">
+                <div class="form-group">
+                    <label for="grocery-item-name">Item Name</label>
+                    <input type="text" id="grocery-item-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="grocery-quantity">Quantity</label>
+                    <input type="text" id="grocery-quantity" placeholder="e.g., 2 lbs, 1 gallon">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-grocery">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

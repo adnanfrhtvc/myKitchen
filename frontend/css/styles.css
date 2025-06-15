@@ -1,0 +1,904 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* Navigation */
+.navbar {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: none;
+}
+
+.navbar.show {
+  display: block;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand h1 {
+  color: #e74c3c;
+  font-size: 1.8rem;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #34495e;
+}
+
+/* Mobile Navigation */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s;
+  position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+.nav-toggle.active .hamburger {
+  background-color: transparent;
+}
+
+.nav-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.nav-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: #2c3e50;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 1rem;
+    transition: left 0.3s ease;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-link {
+    width: 80%;
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px solid #34495e;
+  }
+}
+
+/* Main Content */
+.main-content {
+  min-height: 100vh;
+}
+
+.main-content.with-nav {
+  margin-top: 80px;
+}
+
+/* Pages */
+.page {
+  display: none;
+  min-height: 100vh;
+}
+
+.page.active {
+  display: block;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Authentication */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.auth-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.auth-switch a {
+  color: #e74c3c;
+  text-decoration: none;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #e74c3c;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #c0392b;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+/* Dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dashboard-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h3 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.dashboard-card .btn {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Dashboard Grocery List */
+.dashboard-grocery {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.dashboard-grocery-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.dashboard-grocery-item:last-child {
+  border-bottom: none;
+}
+
+.dashboard-grocery-item.completed {
+  opacity: 0.6;
+}
+
+.dashboard-grocery-item.completed .grocery-name {
+  text-decoration: line-through;
+}
+
+.dashboard-grocery-checkbox {
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+.grocery-name {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.grocery-quantity {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-left {
+    order: 2;
+  }
+
+  .dashboard-right {
+    order: 1;
+  }
+}
+
+/* Page Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h2 {
+  color: #2c3e50;
+}
+
+/* Tasks and Recipes */
+.tasks-container,
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.task-card,
+.recipe-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.task-card:hover,
+.recipe-card:hover {
+  transform: translateY(-2px);
+}
+
+.task-card h3,
+.recipe-card h3 {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.task-meta,
+.recipe-meta {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.task-actions,
+.recipe-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.task-actions .btn,
+.recipe-actions .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Priority and Status Badges */
+.priority-high {
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.priority-medium {
+  background-color: #f39c12;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.priority-low {
+  background-color: #27ae60;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.status-completed {
+  background-color: #27ae60;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.status-in_progress {
+  background-color: #f39c12;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.status-pending {
+  background-color: #95a5a6;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* Modals */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 0;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.close {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.modal form {
+  padding: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .modal-content {
+    margin: 2% auto;
+    width: 95%;
+  }
+
+  .tasks-container,
+  .recipes-container {
+    grid-template-columns: 1fr;
+  }
+
+  .grocery-actions {
+    flex-direction: column;
+  }
+
+  .quick-add-form {
+    flex-direction: column;
+  }
+
+  .grocery-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .grocery-item-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .account-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand h1 {
+    font-size: 1.5rem;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .dashboard-card {
+    padding: 1.5rem;
+  }
+
+  .task-card,
+  .recipe-card {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    margin: 1% auto;
+    width: 98%;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Loading and Error States */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+/* Empty States */
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.empty-state h3 {
+  margin-bottom: 1rem;
+  color: #999;
+}
+
+/* Grocery List Styles */
+.grocery-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.grocery-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.grocery-input-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.quick-add-form {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+}
+
+.quick-add-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.quick-add-form button {
+  white-space: nowrap;
+}
+
+.grocery-list {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.grocery-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.grocery-item:last-child {
+  border-bottom: none;
+}
+
+.grocery-item:hover {
+  background-color: #f8f9fa;
+}
+
+.grocery-item.completed {
+  opacity: 0.6;
+  background-color: #f8f9fa;
+}
+
+.grocery-item.completed .grocery-item-name {
+  text-decoration: line-through;
+}
+
+.grocery-checkbox {
+  margin-right: 1rem;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.grocery-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.grocery-item-name {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.grocery-item-quantity {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.grocery-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.grocery-item-actions .btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+/* Account Page Styles */
+.account-container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.account-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.account-card h3 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.danger-zone {
+  border: 2px solid #e74c3c;
+}
+
+.danger-zone h3 {
+  color: #e74c3c;
+}
+
+.danger-zone p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+/* Empty grocery list state */
+.grocery-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.grocery-empty h3 {
+  margin-bottom: 1rem;
+  color: #999;
+}
+
+/* Responsive updates for grocery list */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .modal-content {
+    margin: 2% auto;
+    width: 95%;
+  }
+
+  .tasks-container,
+  .recipes-container {
+    grid-template-columns: 1fr;
+  }
+
+  .grocery-actions {
+    flex-direction: column;
+  }
+
+  .quick-add-form {
+    flex-direction: column;
+  }
+
+  .grocery-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .grocery-item-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .account-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand h1 {
+    font-size: 1.5rem;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .dashboard-card {
+    padding: 1.5rem;
+  }
+
+  .task-card,
+  .recipe-card {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    margin: 1% auto;
+    width: 98%;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}

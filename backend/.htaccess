@@ -1,0 +1,14 @@
+# Enable CORS for development
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# Handle preflight requests
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# Pretty URLs for API endpoints
+RewriteRule ^api/auth/(.*)$ controllers/AuthController.php?action=$1 [QSA,L]
+RewriteRule ^api/tasks/(.*)$ controllers/TaskController.php?action=$1 [QSA,L]
+RewriteRule ^api/recipes/(.*)$ controllers/RecipeController.php?action=$1 [QSA,L]
